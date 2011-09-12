@@ -9,11 +9,23 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "src/player/player.h"
-         timestampString = "337535890.577515"
+         timestampString = "337548667.951952"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "4"
-         endingLineNumber = "4">
+         startingLineNumber = "6"
+         endingLineNumber = "6">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "src/nodes/node.cpp"
+         timestampString = "337548361.666969"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "5"
+         endingLineNumber = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

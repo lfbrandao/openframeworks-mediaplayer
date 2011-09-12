@@ -20,7 +20,7 @@ void videoLayer::setup(string videoURI, int width, int height, int x, int y, int
 
 void videoLayer::play()
 {
-        videoPlayer.setVolume(0);
+    //videoPlayer.setVolume(0);
     this->videoPlayer.play();    
 }
 
@@ -45,4 +45,9 @@ void videoLayer::draw()
 {
     ofSetHexColor(0xFFFFFF);
     videoPlayer.draw(this->x,this->y, this->width, this->height);
+}
+
+float videoLayer::getDuration()
+{
+    return videoPlayer.getDuration() * 1000;
 }

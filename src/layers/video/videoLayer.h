@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include <stdio.h>
 
+
 class videoLayer
 {
 public:
@@ -16,10 +17,13 @@ public:
     // of methods
     void update();
     void draw();
+    
+    float getDuration();
 private:
     int x;
     int y;
     int width;
     int height;
+    int duration;
 };
 

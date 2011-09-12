@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		C1BD8674141E83480022D9C4 /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BD8672141E83480022D9C4 /* node.cpp */; };
 		C1C2B340141814B900769C3C /* videoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1C2B33E141814B800769C3C /* videoLayer.cpp */; };
 		C1C2B347141815E800769C3C /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1C2B345141815E800769C3C /* player.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -59,6 +60,9 @@
 
 /* Begin PBXFileReference section */
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
+		C1BD8672141E83480022D9C4 /* node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = node.cpp; sourceTree = "<group>"; };
+		C1BD8673141E83480022D9C4 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
+		C1BD8675141E96BD0022D9C4 /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
 		C1C2B33E141814B800769C3C /* videoLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = videoLayer.cpp; sourceTree = "<group>"; };
 		C1C2B33F141814B800769C3C /* videoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoLayer.h; sourceTree = "<group>"; };
 		C1C2B345141815E800769C3C /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
@@ -142,6 +146,15 @@
 			name = "3rd party frameworks";
 			sourceTree = "<group>";
 		};
+		C1BD8671141E83480022D9C4 /* nodes */ = {
+			isa = PBXGroup;
+			children = (
+				C1BD8672141E83480022D9C4 /* node.cpp */,
+				C1BD8673141E83480022D9C4 /* node.h */,
+			);
+			path = nodes;
+			sourceTree = "<group>";
+		};
 		C1C2B33B141814B800769C3C /* layers */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +193,7 @@
 		C1C2B3481418170500769C3C /* shared */ = {
 			isa = PBXGroup;
 			children = (
+				C1BD8675141E96BD0022D9C4 /* layer.h */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -217,6 +231,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C1BD8671141E83480022D9C4 /* nodes */,
 				C1C2B3411418157400769C3C /* player */,
 				C1C2B33B141814B800769C3C /* layers */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
@@ -320,6 +335,7 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				C1C2B340141814B900769C3C /* videoLayer.cpp in Sources */,
 				C1C2B347141815E800769C3C /* player.cpp in Sources */,
+				C1BD8674141E83480022D9C4 /* node.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
