@@ -18,6 +18,10 @@ void videoLayer::setup(string videoURI, int width, int height, int x, int y, int
     printf("Y %i \n", y);
 }
 
+void videoLayer::setup(string videoURI, int startAt, int stopAt)
+{
+}
+
 void videoLayer::play()
 {
     //videoPlayer.setVolume(0);

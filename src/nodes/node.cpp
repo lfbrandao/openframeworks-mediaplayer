@@ -2,33 +2,34 @@
 
 node::node(){}
 
-void node::addLayer(videoLayer layer)
+void node::addLayer(videoLayer &vlayer)
 {
-    layers.push_back(layer);
     
-    if(layer.getDuration() > this->duration)
+    layers.push_back((&vlayer));
+    
+    if((&vlayer)->getDuration() > this->duration)
     {
-        this->duration = layer.getDuration();
+        this->duration = (&vlayer)->getDuration();
     }
 }
 
 void node::update()
 {
-    list<videoLayer>::iterator i;
+    list<layer*>::iterator i;
     
     for (i = layers.begin(); i != layers.end(); ++i)
     {
-        i->update();
+        (*i)->update();
     }   
 }
 
 void node::draw()
 {
-    list<videoLayer>::iterator i;
+    list<layer*>::iterator i;
     
     for (i = layers.begin(); i != layers.end(); ++i)
     {
-        i->draw();
+        (*i)->draw();
     }
 }
 
@@ -37,11 +38,11 @@ void node::play()
 {
     startTime = ofGetElapsedTimeMillis();
     
-    list<videoLayer>::iterator i;
+    list<layer*>::iterator i;
     
     for (i = layers.begin(); i != layers.end(); ++i)
     {
-        i->play();
+        (*i)->play();
     }
 }
 

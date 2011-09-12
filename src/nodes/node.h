@@ -9,7 +9,7 @@ class node
 {
 public:
     node();
-    void addLayer(videoLayer layer);
+    void addLayer(videoLayer &vlayer);
     
     void update();
     void draw();
@@ -18,7 +18,7 @@ public:
     
     float getDuration();
 private:
-    list<videoLayer> layers;
+    list<layer*> layers;
     int startTime;
     float duration;
 };

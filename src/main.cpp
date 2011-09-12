@@ -5,7 +5,8 @@
 using namespace std;
 
 //========================================================================
-int main( ){
+int main( )
+{
     ofAppGlutWindow window;
 	ofSetupOpenGL(&window, 1280, 800, OF_FULLSCREEN);			// <-------- setup the GL context
 
@@ -13,5 +14,6 @@ int main( ){
 	// can be OF_WINDOW or OF_FULLSCREEN
 	// pass in width and height too:
 	ofRunApp( new player());
-
+    
+    //videoLayer v;
 }
