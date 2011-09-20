@@ -20,11 +20,13 @@ void videoLayer::setup(string videoURI, int width, int height, int x, int y, int
 
 void videoLayer::setup(string videoURI, int startAt, int stopAt)
 {
+    ofBackground(255,255,255);
+    this->videoPlayer.loadMovie(videoURI);
 }
 
 void videoLayer::play()
 {
-    //videoPlayer.setVolume(0);
+    videoPlayer.setVolume(50);
     this->videoPlayer.play();    
 }
 
@@ -48,7 +50,13 @@ void videoLayer::update()
 void videoLayer::draw()
 {
     ofSetHexColor(0xFFFFFF);
+    cout << "Drawing video layer " << endl;
+    printf("Width %i \n", width);
+    printf("Height %i \n", height);
+    printf("X %i \n", x);
+    printf("Y %i \n", y);
     videoPlayer.draw(this->x,this->y, this->width, this->height);
+    //videoPlayer.draw(0, 0, 500, 500);
 }
 
 float videoLayer::getDuration()

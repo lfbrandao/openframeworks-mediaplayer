@@ -7,7 +7,7 @@
 class videoLayer : public layer
 {
 public:
-    void setup(string videoURI, int width, int height, int x, int y, int startAt, int stopAt);
+    virtual void setup(string videoURI, int width, int height, int x, int y, int startAt, int stopAt);
     virtual void setup(string videoURI, int startAt, int stopAt);
     
     virtual void play();
@@ -22,11 +22,5 @@ public:
     virtual void draw();
     
     float getDuration();
-private:
-    int x;
-    int y;
-    int width;
-    int height;
-    int duration;
 };
 

@@ -8,7 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		C1A41E5914213F3700698086 /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A41E5714213F3700698086 /* testApp.cpp */; };
+		C1A41E721421405900698086 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A41E6B1421405900698086 /* json_reader.cpp */; };
+		C1A41E731421405900698086 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A41E6C1421405900698086 /* json_value.cpp */; };
+		C1A41E741421405900698086 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A41E6E1421405900698086 /* json_writer.cpp */; };
+		C1A41E751421405900698086 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A41E701421405900698086 /* ofxJSONElement.cpp */; };
 		C1BD8674141E83480022D9C4 /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BD8672141E83480022D9C4 /* node.cpp */; };
+		C1BD8679141EB2630022D9C4 /* imageLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BD8677141EB2630022D9C4 /* imageLayer.cpp */; };
+		C1BD867C141EB5BB0022D9C4 /* audioLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BD867A141EB5BB0022D9C4 /* audioLayer.cpp */; };
 		C1C2B340141814B900769C3C /* videoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1C2B33E141814B800769C3C /* videoLayer.cpp */; };
 		C1C2B347141815E800769C3C /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1C2B345141815E800769C3C /* player.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -60,9 +67,32 @@
 
 /* Begin PBXFileReference section */
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
+		C1A41E5714213F3700698086 /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
+		C1A41E5814213F3700698086 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
+		C1A41E5E1421405900698086 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
+		C1A41E5F1421405900698086 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		C1A41E601421405900698086 /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
+		C1A41E611421405900698086 /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwards.h; sourceTree = "<group>"; };
+		C1A41E621421405900698086 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		C1A41E631421405900698086 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		C1A41E641421405900698086 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
+		C1A41E651421405900698086 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		C1A41E681421405900698086 /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_batchallocator.h; sourceTree = "<group>"; };
+		C1A41E691421405900698086 /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalarray.inl; sourceTree = "<group>"; };
+		C1A41E6A1421405900698086 /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalmap.inl; sourceTree = "<group>"; };
+		C1A41E6B1421405900698086 /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_reader.cpp; sourceTree = "<group>"; };
+		C1A41E6C1421405900698086 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
+		C1A41E6D1421405900698086 /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_valueiterator.inl; sourceTree = "<group>"; };
+		C1A41E6E1421405900698086 /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
+		C1A41E701421405900698086 /* ofxJSONElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxJSONElement.cpp; sourceTree = "<group>"; };
+		C1A41E711421405900698086 /* ofxJSONElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxJSONElement.h; sourceTree = "<group>"; };
 		C1BD8672141E83480022D9C4 /* node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = node.cpp; sourceTree = "<group>"; };
 		C1BD8673141E83480022D9C4 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
 		C1BD8675141E96BD0022D9C4 /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
+		C1BD8677141EB2630022D9C4 /* imageLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imageLayer.cpp; sourceTree = "<group>"; };
+		C1BD8678141EB2630022D9C4 /* imageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imageLayer.h; sourceTree = "<group>"; };
+		C1BD867A141EB5BB0022D9C4 /* audioLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audioLayer.cpp; sourceTree = "<group>"; };
+		C1BD867B141EB5BB0022D9C4 /* audioLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audioLayer.h; sourceTree = "<group>"; };
 		C1C2B33E141814B800769C3C /* videoLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = videoLayer.cpp; sourceTree = "<group>"; };
 		C1C2B33F141814B800769C3C /* videoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoLayer.h; sourceTree = "<group>"; };
 		C1C2B345141815E800769C3C /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
@@ -146,6 +176,88 @@
 			name = "3rd party frameworks";
 			sourceTree = "<group>";
 		};
+		C1A41E5614213F3700698086 /* jsontest */ = {
+			isa = PBXGroup;
+			children = (
+				C1A41E5714213F3700698086 /* testApp.cpp */,
+				C1A41E5814213F3700698086 /* testApp.h */,
+			);
+			path = jsontest;
+			sourceTree = "<group>";
+		};
+		C1A41E5A1421405900698086 /* ofxJSON */ = {
+			isa = PBXGroup;
+			children = (
+				C1A41E5B1421405900698086 /* lib */,
+				C1A41E6F1421405900698086 /* src */,
+			);
+			name = ofxJSON;
+			path = ../../../../addons/ofxJSON;
+			sourceTree = "<group>";
+		};
+		C1A41E5B1421405900698086 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				C1A41E5C1421405900698086 /* include */,
+				C1A41E661421405900698086 /* src */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		C1A41E5C1421405900698086 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C1A41E5D1421405900698086 /* json */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		C1A41E5D1421405900698086 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				C1A41E5E1421405900698086 /* autolink.h */,
+				C1A41E5F1421405900698086 /* config.h */,
+				C1A41E601421405900698086 /* features.h */,
+				C1A41E611421405900698086 /* forwards.h */,
+				C1A41E621421405900698086 /* json.h */,
+				C1A41E631421405900698086 /* reader.h */,
+				C1A41E641421405900698086 /* value.h */,
+				C1A41E651421405900698086 /* writer.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		C1A41E661421405900698086 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C1A41E671421405900698086 /* lib_json */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C1A41E671421405900698086 /* lib_json */ = {
+			isa = PBXGroup;
+			children = (
+				C1A41E681421405900698086 /* json_batchallocator.h */,
+				C1A41E691421405900698086 /* json_internalarray.inl */,
+				C1A41E6A1421405900698086 /* json_internalmap.inl */,
+				C1A41E6B1421405900698086 /* json_reader.cpp */,
+				C1A41E6C1421405900698086 /* json_value.cpp */,
+				C1A41E6D1421405900698086 /* json_valueiterator.inl */,
+				C1A41E6E1421405900698086 /* json_writer.cpp */,
+			);
+			path = lib_json;
+			sourceTree = "<group>";
+		};
+		C1A41E6F1421405900698086 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C1A41E701421405900698086 /* ofxJSONElement.cpp */,
+				C1A41E711421405900698086 /* ofxJSONElement.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		C1BD8671141E83480022D9C4 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,9 +267,19 @@
 			path = nodes;
 			sourceTree = "<group>";
 		};
+		C1BD8676141EB2630022D9C4 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				C1BD8677141EB2630022D9C4 /* imageLayer.cpp */,
+				C1BD8678141EB2630022D9C4 /* imageLayer.h */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		C1C2B33B141814B800769C3C /* layers */ = {
 			isa = PBXGroup;
 			children = (
+				C1BD8676141EB2630022D9C4 /* image */,
 				C1C2B3481418170500769C3C /* shared */,
 				C1C2B33C141814B800769C3C /* audio */,
 				C1C2B33D141814B800769C3C /* video */,
@@ -168,6 +290,8 @@
 		C1C2B33C141814B800769C3C /* audio */ = {
 			isa = PBXGroup;
 			children = (
+				C1BD867A141EB5BB0022D9C4 /* audioLayer.cpp */,
+				C1BD867B141EB5BB0022D9C4 /* audioLayer.h */,
 			);
 			path = audio;
 			sourceTree = "<group>";
@@ -231,6 +355,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C1A41E5A1421405900698086 /* ofxJSON */,
+				C1A41E5614213F3700698086 /* jsontest */,
 				C1BD8671141E83480022D9C4 /* nodes */,
 				C1C2B3411418157400769C3C /* player */,
 				C1C2B33B141814B800769C3C /* layers */,
@@ -336,6 +462,13 @@
 				C1C2B340141814B900769C3C /* videoLayer.cpp in Sources */,
 				C1C2B347141815E800769C3C /* player.cpp in Sources */,
 				C1BD8674141E83480022D9C4 /* node.cpp in Sources */,
+				C1BD8679141EB2630022D9C4 /* imageLayer.cpp in Sources */,
+				C1BD867C141EB5BB0022D9C4 /* audioLayer.cpp in Sources */,
+				C1A41E5914213F3700698086 /* testApp.cpp in Sources */,
+				C1A41E721421405900698086 /* json_reader.cpp in Sources */,
+				C1A41E731421405900698086 /* json_value.cpp in Sources */,
+				C1A41E741421405900698086 /* json_writer.cpp in Sources */,
+				C1A41E751421405900698086 /* ofxJSONElement.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

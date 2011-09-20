@@ -2,30 +2,26 @@
 
 node::node(){}
 
-void node::addLayer(videoLayer &vlayer)
+node::node(int id){this->id = id;}
+
+void node::addLayer(layerPtr vlayer)
 {
-    
-    layers.push_back((&vlayer));
-    
-    if((&vlayer)->getDuration() > this->duration)
-    {
-        this->duration = (&vlayer)->getDuration();
-    }
+    layers.push_back(vlayer);
 }
 
 void node::update()
 {
-    list<layer*>::iterator i;
+    list<layerPtr>::iterator i;
     
     for (i = layers.begin(); i != layers.end(); ++i)
     {
         (*i)->update();
-    }   
+    }
 }
 
 void node::draw()
 {
-    list<layer*>::iterator i;
+    list<layerPtr>::iterator i;
     
     for (i = layers.begin(); i != layers.end(); ++i)
     {
@@ -33,12 +29,9 @@ void node::draw()
     }
 }
 
-
 void node::play()
 {
-    startTime = ofGetElapsedTimeMillis();
-    
-    list<layer*>::iterator i;
+    list<layerPtr>::iterator i;
     
     for (i = layers.begin(); i != layers.end(); ++i)
     {
@@ -46,7 +39,37 @@ void node::play()
     }
 }
 
-float node::getDuration()
+void node::pause()
 {
-    return this->duration;
+    list<layerPtr>::iterator i;
+    
+    for (i = layers.begin(); i != layers.end(); ++i)
+    {
+        (*i)->pause();
+    }
+}
+
+void node::stop()
+{
+    list<layerPtr>::iterator i;
+    
+    for (i = layers.begin(); i != layers.end(); ++i)
+    {
+        (*i)->stop();
+    }
+}
+
+int node::getAdjacentNode(string direction)
+{
+    map<string,int>::iterator it = adjacentNodes.find(direction);
+
+    if(it != adjacentNodes.end())
+    {
+        return it->second;
+    }
+}
+
+void node::addAdjacentNode(string direction, int nodeId)
+{
+    adjacentNodes.insert(pair<string,int>(direction,nodeId));
 }
