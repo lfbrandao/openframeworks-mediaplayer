@@ -7,6 +7,8 @@ void videoLayer::setup(string videoURI, int width, int height, int x, int y, int
 	frameByframe = false;
     
 	this->videoPlayer.loadMovie(videoURI);
+    this->originalWidth = width; 
+    this->originalHeight = height; 
     this->width = width;
     this->height = height;
     this->x = x;

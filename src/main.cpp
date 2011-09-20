@@ -1,6 +1,7 @@
 #include "ofMain.h"
 #include "player.h"
 #include "testApp.h"
+#include "scaleTest.h"
 #include "ofAppGlutWindow.h"
 #include <iostream> 
 #include <tr1/memory>
@@ -19,8 +20,9 @@ int main( )
 	// can be OF_WINDOW or OF_FULLSCREEN
 	// pass in width and height too:
 	//ofRunApp( new player());
-    ofRunApp( new player("/Users/luisbrandao/Documents/metaLAB/code/revere/zeega_project.json"));
+    //ofRunApp( new player("/Users/luisbrandao/Documents/metaLAB/code/revere/zeega_project.json"));
     //videoLayer v;
     //"/Users/luisbrandao/Downloads/zeega_test_project.json"
-    //ofRunApp(new testApp());
+    ofRunApp(new scaleTest());
+    //ofRunApp(new scaleTest());
 }

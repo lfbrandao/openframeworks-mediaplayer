@@ -8,6 +8,7 @@ void audioLayer::setup(string videoURI, int width, int height, int x, int y, int
 	this->soundPlayer.loadSound(videoURI);
     this->width = width;
     this->height = height;
+    
     this->x = x;
     this->y = y;
     

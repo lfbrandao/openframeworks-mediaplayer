@@ -40,9 +40,26 @@ class layer
         void  setOutTime(float outTime){this->outTime = outTime;}    
         void  setOpacity(float opacity){this->opacity = opacity;}    
         void  setAspectRatio(float aspectRatio){this->aspectRatio = aspectRatio;}
-    
+        
+        void  resize(int percentage) 
+        {
+            float newWidth = originalWidth * percentage / 100;
+            float newHeight = originalHeight * percentage / 100;
+            float xPosOffset = (width - newWidth) / 2;
+            float yPosOffset = (height - newHeight) / 2;
+            
+            if(newWidth >= originalWidth)
+            {
+                this->width = originalWidth * percentage / 100;
+                this->height = originalHeight * percentage / 100;
+                this->x = x + xPosOffset;
+                this->y = y + yPosOffset;
+            }
+        }
     protected:
         int id;
+        float originalWidth;
+        float originalHeight;
         float x;
         float y;
         float height;

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		C1549E8F1429281400D9BB55 /* scaleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1549E8D1429281400D9BB55 /* scaleTest.cpp */; };
 		C1A41E5914213F3700698086 /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A41E5714213F3700698086 /* testApp.cpp */; };
 		C1A41E721421405900698086 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A41E6B1421405900698086 /* json_reader.cpp */; };
 		C1A41E731421405900698086 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1A41E6C1421405900698086 /* json_value.cpp */; };
@@ -67,6 +68,8 @@
 
 /* Begin PBXFileReference section */
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
+		C1549E8D1429281400D9BB55 /* scaleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scaleTest.cpp; sourceTree = "<group>"; };
+		C1549E8E1429281400D9BB55 /* scaleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scaleTest.h; sourceTree = "<group>"; };
 		C1A41E5714213F3700698086 /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		C1A41E5814213F3700698086 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		C1A41E5E1421405900698086 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
@@ -174,6 +177,15 @@
 				BBAB23BE13894E4700AA2426 /* GLUT.framework */,
 			);
 			name = "3rd party frameworks";
+			sourceTree = "<group>";
+		};
+		C1549E8C1429281400D9BB55 /* scale */ = {
+			isa = PBXGroup;
+			children = (
+				C1549E8D1429281400D9BB55 /* scaleTest.cpp */,
+				C1549E8E1429281400D9BB55 /* scaleTest.h */,
+			);
+			path = scale;
 			sourceTree = "<group>";
 		};
 		C1A41E5614213F3700698086 /* jsontest */ = {
@@ -355,6 +367,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C1549E8C1429281400D9BB55 /* scale */,
 				C1A41E5A1421405900698086 /* ofxJSON */,
 				C1A41E5614213F3700698086 /* jsontest */,
 				C1BD8671141E83480022D9C4 /* nodes */,
@@ -469,6 +482,7 @@
 				C1A41E731421405900698086 /* json_value.cpp in Sources */,
 				C1A41E741421405900698086 /* json_writer.cpp in Sources */,
 				C1A41E751421405900698086 /* ofxJSONElement.cpp in Sources */,
+				C1549E8F1429281400D9BB55 /* scaleTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

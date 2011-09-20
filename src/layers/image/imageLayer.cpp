@@ -9,6 +9,8 @@ void imageLayer::setup(string videoURI, int width, int height, int x, int y, int
 	this->img.loadImage(videoURI);
     this->width = width;
     this->height = height;
+    this->originalWidth = width; 
+    this->originalHeight = height;
     this->x = x;
     this->y = y;
     

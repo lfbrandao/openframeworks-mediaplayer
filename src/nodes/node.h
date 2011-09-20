@@ -22,6 +22,8 @@ public:
     void pause();
     void stop();
     
+    void resize(int percentage);
+    
     int getAdjacentNode(string direction);
     void addAdjacentNode(string direction, int nodeId);
 

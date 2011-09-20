@@ -4,6 +4,16 @@ node::node(){}
 
 node::node(int id){this->id = id;}
 
+void node::resize(int percentage)
+{
+    list<layerPtr>::iterator i;
+    
+    for (i = layers.begin(); i != layers.end(); ++i)
+    {
+        (*i)->resize(percentage);
+    }
+}
+
 void node::addLayer(layerPtr vlayer)
 {
     layers.push_back(vlayer);
