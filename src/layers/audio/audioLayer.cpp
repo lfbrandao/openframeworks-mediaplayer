@@ -1,32 +1,19 @@
 #include "audioLayer.h"
 
 //--------------------------------------------------------------
-void audioLayer::setup(string videoURI, int width, int height, int x, int y, int startAt, int stopAt)
+void audioLayer::setup(string audioURI)
 {    
-	ofBackground(255,255,255);
-	
-	this->soundPlayer.loadSound(videoURI);
-    this->width = width;
-    this->height = height;
-    
-    this->x = x;
-    this->y = y;
-    
-    printf("Width %i \n", width);
-    printf("Height %i \n", height);
-    printf("X %i \n", x);
-    printf("Y %i \n", y);
+	ofBackground(0,0,0);
+    this->objectURI = audioURI;
 }
 
-void audioLayer::setup(string videoURI, int startAt, int stopAt)
+void audioLayer::load()
 {
-    ofBackground(255,255,255);
-    this->soundPlayer.loadSound(videoURI);
+    this->soundPlayer.loadSound(this->objectURI);
 }
 
 void audioLayer::play()
 {
-    soundPlayer.setVolume(1.0);
     this->soundPlayer.play();    
 }
 

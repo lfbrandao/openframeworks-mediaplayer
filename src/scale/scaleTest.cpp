@@ -8,7 +8,12 @@ void scaleTest::setup()
 {
     ofBackground(255,255,255);
     layerPtr l = layerPtr(new videoLayer);
-    l->setup("/Users/luisbrandao/Dropbox/Public/earthless.mp4", ofGetWidth(), ofGetHeight(), 0, 0, 0, 0);
+    l->setup("/Users/luisbrandao/Dropbox/Public/earthless.mp4");
+    l->setWidth(ofGetWidth());
+    l->setHeight(ofGetHeight());
+    l->setX(0);
+    l->setY(0);
+                 
     testNode.addLayer(l);
     testNode.play();
     this->scale = 100;

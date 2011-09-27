@@ -7,6 +7,8 @@
 #include "node.h"
 #include "layer.h"
 #include <map>
+#include <set>
+#include <queue>
 #include <iterator>
 #include "ofxJSONElement.h"
 #include <tr1/memory>
@@ -26,6 +28,7 @@ class player : public ofBaseApp
         void mocksetup();
 		void update();
 		void draw();
+        void loadNode(int newNodeId);
     private:	
         void keyPressed(int key);
         void keyReleased(int key);
@@ -33,8 +36,8 @@ class player : public ofBaseApp
 
         node* currNode;  
 
-        map<int,layerPtr> layers;  // list of items: <url,item>
-        map<int,node> nodes;    // list of items: <url,item>
+        map<int,layerPtr> layers;   // list of items: <url,item>
+        map<int,node> nodes;        // list of items: <url,item>
         
         ofxJSONElement  jsonProject;
     
@@ -42,7 +45,10 @@ class player : public ofBaseApp
         string projectFilePath;
     
         kinectControllerSimple kinect;
-    
         
+    map<int,string> nodeStatus;
+    set<int> layersActive;
+    queue<int> loadingQueue; 
+    int currNodeId;
 };
 

@@ -4,8 +4,9 @@
 class layer 
 {
     public:
-        virtual void setup(string videoURI, int startAt, int stopAt) = 0;
-        virtual void setup(string videoURI, int width, int height, int x, int y, int startAt, int stopAt) = 0;
+        virtual void setup(string objectURI) = 0;
+        
+        virtual void load() = 0;
         
         // playback control
         virtual void play() = 0;
@@ -57,6 +58,7 @@ class layer
             }
         }
     protected:
+        string objectURI;
         int id;
         float originalWidth;
         float originalHeight;
@@ -69,4 +71,6 @@ class layer
         float outTime;
         float opacity;
         float aspectRatio;
+    
+    bool loaded;
 };

@@ -5,38 +5,76 @@ player::player(string projectFilePath)
     this->projectFilePath = projectFilePath;
 }
 
+void player::loadNode(int newNodeId)
+{
+    int prevNodeId = 0;
+    
+    if(currNode != NULL) prevNodeId = currNode->getId();
+    
+    // prepare the new node for loading if not loaded
+    if(nodeStatus.count(newNodeId) == 0)
+    {
+        nodeStatus.insert(pair<int, string>(newNodeId, "loading"));
+        loadingQueue.push(newNodeId);
+    }
+    
+    // prepare the new node neighbors to load
+    map<int,node>::iterator iter = nodes.find(newNodeId); //if(iter != nodes.end())
+    
+    map<string, int> nodeNeighbors = iter->second.getAdjacentNodes();
+    map<string, int>::iterator i;
+        
+    for(i = nodeNeighbors.begin(); i != nodeNeighbors.end(); i++)
+    {
+        int neighborNodeId = i->second; 
+        if(nodeStatus.count(neighborNodeId) == 0)
+        {
+            nodeStatus.insert(pair<int, string>(neighborNodeId, "loading"));
+            loadingQueue.push(neighborNodeId);
+        }
+    }
+
+    // get the new node layers
+    set<int> layersToKeep = iter->second.getLayersId();
+    set<int> nodesToKeep;    
+    nodesToKeep.insert(newNodeId);
+    
+    // unload the neighbors of the previous node
+    iter = nodes.find(prevNodeId); //if(iter != nodes.end())
+    
+    set<int> layersToDelete, nodesToDelete;
+    
+    iter->second.unloadAdjacentNodes(layersToKeep, nodesToKeep, layersToDelete, nodesToDelete);
+    
+    set<int>::iterator delIt;
+    for(delIt = layersToDelete.begin(); delIt != layersToDelete.end(); delIt++)
+    {
+        layersActive.erase((*delIt));
+    }
+    for(delIt = nodesToDelete.begin(); delIt != nodesToDelete.end(); delIt++)
+    {
+        nodeStatus.erase((*delIt));
+    }
+    cout << "node status count: " << nodeStatus.size() << endl;
+    cout << "layersActive count: " << layersActive.size() << endl;
+    cout << "loadingQueue count: " << loadingQueue.size() << endl;
+    
+}
+
 void player::mocksetup()
 {
-    /*string testUrl = "/Users/luisbrandao/Documents/metaLAB/code/revere-small/6996758.mp3";
-    node n;
-    n.setId(1500);
     
-    layerPtr newLayer = layerPtr(new videoLayer);
-    newLayer->setId(5);
-    newLayer->setup(testUrl, 0, 100);
-
-    layers.insert(pair<int, layerPtr>(newLayer->getId(), newLayer));
-    
-    n.addLayer(newLayer);
-    //newLayer->play();
-    nodes.insert(pair<int, node>(1500, n));
-    
-    map<int,node>::iterator iter = nodes.find(1500);
-    currNode = &iter->second;
-    currNode->play();*/
-    layerPtr newLayer = layerPtr(new videoLayer);
-    newLayer->setup("/Users/luisbrandao/Dropbox/Public/earthless.mp4", 200, 200, 0, 0, 0, 0);
-    node n;
-    n.setId(1500);
-    n.addLayer(newLayer);
-    
-    currNode = &n;
 }
 
 //--------------------------------------------------------------
 void player::update()
 {
-    currNode->update();
+    if(currNode != NULL)
+    {
+        if(!currNode->isPlaying()) currNode->play();
+        if(currNode->isLoaded()) currNode->update();
+    }    
+
     //kinect.update();
 }
 
@@ -44,7 +82,8 @@ void player::update()
 void player::draw()
 {
     ofBackground(0,0,0);
-    currNode->draw();
+    if(currNode != NULL && currNode->isLoaded())    
+        currNode->draw();
     //kinect.draw();
 }
 
@@ -66,12 +105,10 @@ void player::setup()
 
             // read layer properties
             layerPtr l = this->createLayerForItem(mediaType, localURL);
-            /*
-            l->setX(jsonProject["layers"][i]["x"].asDouble());
-            l->setY(jsonProject["layers"][i]["y"].asDouble());
-            l->setHeight(jsonProject["layers"][i]["h"].asDouble());
-            l->setWidth(jsonProject["layers"][i]["w"].asDouble());
-             */
+            l->setX(0);
+            l->setY(0);
+            l->setHeight(ofGetHeight());
+            l->setWidth(ofGetWidth());
             l->setVolume(jsonProject["layers"][i]["volume"].asDouble());
             l->setInTime(jsonProject["layers"][i]["in"].asDouble());
             l->setOutTime(jsonProject["layers"][i]["out"].asDouble());
@@ -123,8 +160,11 @@ void player::setup()
 	}
     
     map<int,node>::iterator iter = nodes.find(11590);
-    currNode = &iter->second;
+    /*currNode = &iter->second;
+    currNode->load();
     currNode->play();
+     */
+    loadNode(11590);
 }
 
 layerPtr player::createLayerForItem(string itemType, string localURI)
@@ -154,7 +194,6 @@ layerPtr player::createLayerForItem(string itemType, string localURI)
         v->setWidth(ofGetScreenWidth());
         v->setHeight(ofGetScreenHeight());
 
-        
         newLayer = layerPtr(v);
     }
     else
@@ -163,7 +202,12 @@ layerPtr player::createLayerForItem(string itemType, string localURI)
     }
     
     //newLayer->load(&item);
-    newLayer->setup(localURI, ofGetScreenWidth(),ofGetScreenHeight(), 0, 0, 0,0);
+    newLayer->setup(localURI);
+    newLayer->setWidth(ofGetScreenWidth());
+    newLayer->setWidth(ofGetScreenHeight());
+    newLayer->setX(0);
+    newLayer->setY(0);
+    
     return newLayer;
 }
 
@@ -195,6 +239,7 @@ void player::keyPressed  (int key)
         currNode->stop();
         currNode = &(iter->second);
         cout << "Switching to node 2 " << currNode->getId();
+        currNode->load();
         currNode->play();
     }
 }

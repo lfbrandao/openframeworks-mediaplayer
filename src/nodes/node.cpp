@@ -4,6 +4,18 @@ node::node(){}
 
 node::node(int id){this->id = id;}
 
+void node::load()
+{
+    list<layerPtr>::iterator i;
+    
+    for (i = layers.begin(); i != layers.end(); ++i)
+    {
+        (*i)->load();
+    }
+    this->loaded = true;
+}
+
+
 void node::resize(int percentage)
 {
     list<layerPtr>::iterator i;
@@ -41,6 +53,7 @@ void node::draw()
 
 void node::play()
 {
+    playing = true;
     list<layerPtr>::iterator i;
     
     for (i = layers.begin(); i != layers.end(); ++i)

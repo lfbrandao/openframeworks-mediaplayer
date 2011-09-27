@@ -5,6 +5,7 @@
 #include <iterator>
 #include <list>
 #include <map>
+#include <set>
 
 typedef tr1::shared_ptr<layer> layerPtr;
 
@@ -17,7 +18,8 @@ public:
     
     void update();
     void draw();
-
+    void load();
+    
     void play();
     void pause();
     void stop();
@@ -26,12 +28,38 @@ public:
     
     int getAdjacentNode(string direction);
     void addAdjacentNode(string direction, int nodeId);
-
+    map<string,int> getAdjacentNodes() { return this->adjacentNodes; }
+    
     int getId(){return this->id;}
     int setId(int id){this->id = id;}
+    
+    void unload(set<int> nodesToKeep, set<int> layersToKeep, set<int>& nodesDeleted, set<int>& layersDeleted)
+    {
+        
+    }
+    
+    void unloadAdjacentNodes(set<int> nodesToKeep, set<int> layersToKeep, set<int>& nodesDeleted, set<int>& layersDeleted)
+    {}
+
+    set<int> getLayersId()
+    {
+        set<int> v;
+        
+        for(list<layerPtr>::iterator it = layers.begin(); it != layers.end(); ++it) 
+        {
+            v.insert((*it)->getId());
+        }
+        
+        return v;
+    }
+    
+    bool isLoaded(){return loaded;}
+    bool isPlaying(){return playing;}
     
 private:
     int id;
     list<layerPtr> layers;
     map<string, int> adjacentNodes;
+    bool loaded;
+    bool playing;
 };

@@ -7,9 +7,10 @@
 class videoLayer : public layer
 {
 public:
-    virtual void setup(string videoURI, int width, int height, int x, int y, int startAt, int stopAt);
-    virtual void setup(string videoURI, int startAt, int stopAt);
-    
+    virtual void setup(string videoURI);
+
+    virtual void load();
+
     virtual void play();
     virtual void pause();
     virtual void stop();

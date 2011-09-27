@@ -7,12 +7,14 @@
 class imageLayer : public layer
 {
 public:
-    virtual void setup(string videoURI, int width, int height, int x, int y, int startAt, int stopAt);
-    virtual void setup(string videoURI, int startAt, int stopAt);
+    void setup(string imageURI);
     
-    virtual void play();
-    virtual void pause();
-    virtual void stop();
+    virtual void load();
+    
+    virtual void play() {};
+    virtual void pause(){};
+    virtual void stop() {};
+    
     
     ofImage img;
     bool                frameByframe;
@@ -23,10 +25,6 @@ public:
     
     float getDuration();
 private:
-    int x;
-    int y;
-    int width;
-    int height;
     int duration;
 };
 
