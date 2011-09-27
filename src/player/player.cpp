@@ -37,17 +37,21 @@ void player::mocksetup()
 void player::update()
 {
     currNode->update();
+    //kinect.update();
 }
 
 //--------------------------------------------------------------
 void player::draw()
 {
-    ofBackground(255,255,255);
+    ofBackground(0,0,0);
     currNode->draw();
+    //kinect.draw();
 }
 
 void player::setup()
 {
+    //kinect.setup();
+    
     // load project file
     bool success = jsonProject.openLocal(this->projectFilePath);
 	if (success)

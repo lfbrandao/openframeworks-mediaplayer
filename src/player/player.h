@@ -10,6 +10,7 @@
 #include <iterator>
 #include "ofxJSONElement.h"
 #include <tr1/memory>
+#include "kinectControllerSimple.h"
 
 typedef tr1::shared_ptr<layer> layerPtr;
 
@@ -17,6 +18,9 @@ class player : public ofBaseApp
 {
 	public:
         player(string projectFilePath);
+        
+        void setupRecording(string _filename);
+
         //void load(string projectFilePath);
 		void setup();
         void mocksetup();
@@ -36,5 +40,9 @@ class player : public ofBaseApp
     
         layerPtr createLayerForItem(string itemType, string localURI);
         string projectFilePath;
+    
+        kinectControllerSimple kinect;
+    
+        
 };
 
