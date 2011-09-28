@@ -9,56 +9,22 @@ void player::loadNode(int newNodeId)
 {
     int prevNodeId = 0;
     
-    if(currNode != NULL) prevNodeId = currNode->getId();
+    // get the new node and the list of layers
+    map<int,node>::iterator newNodeIt = nodes.find(newNodeId); 
+    newNodeIt->second.load();
     
-    // prepare the new node for loading if not loaded
-    if(nodeStatus.count(newNodeId) == 0)
+    // if there was a node previously loaded...
+    if(currNode != NULL) 
     {
-        nodeStatus.insert(pair<int, string>(newNodeId, "loading"));
-        loadingQueue.push(newNodeId);
-    }
-    
-    // prepare the new node neighbors to load
-    map<int,node>::iterator iter = nodes.find(newNodeId); //if(iter != nodes.end())
-    
-    map<string, int> nodeNeighbors = iter->second.getAdjacentNodes();
-    map<string, int>::iterator i;
-        
-    for(i = nodeNeighbors.begin(); i != nodeNeighbors.end(); i++)
-    {
-        int neighborNodeId = i->second; 
-        if(nodeStatus.count(neighborNodeId) == 0)
-        {
-            nodeStatus.insert(pair<int, string>(neighborNodeId, "loading"));
-            loadingQueue.push(neighborNodeId);
-        }
-    }
+        // get the layers for the new node
+        set<int> newNodeLayers = newNodeIt->second.getLayersId();
 
-    // get the new node layers
-    set<int> layersToKeep = iter->second.getLayersId();
-    set<int> nodesToKeep;    
-    nodesToKeep.insert(newNodeId);
-    
-    // unload the neighbors of the previous node
-    iter = nodes.find(prevNodeId); //if(iter != nodes.end())
-    
-    set<int> layersToDelete, nodesToDelete;
-    
-    iter->second.unloadAdjacentNodes(layersToKeep, nodesToKeep, layersToDelete, nodesToDelete);
-    
-    set<int>::iterator delIt;
-    for(delIt = layersToDelete.begin(); delIt != layersToDelete.end(); delIt++)
-    {
-        layersActive.erase((*delIt));
+        // unload all the layers from the previous node except the ones that
+        // occur in the new node
+        currNode->unload(newNodeLayers);
     }
-    for(delIt = nodesToDelete.begin(); delIt != nodesToDelete.end(); delIt++)
-    {
-        nodeStatus.erase((*delIt));
-    }
-    cout << "node status count: " << nodeStatus.size() << endl;
-    cout << "layersActive count: " << layersActive.size() << endl;
-    cout << "loadingQueue count: " << loadingQueue.size() << endl;
     
+    currNode = &newNodeIt->second;
 }
 
 void player::mocksetup()
@@ -71,8 +37,14 @@ void player::update()
 {
     if(currNode != NULL)
     {
-        if(!currNode->isPlaying()) currNode->play();
-        if(currNode->isLoaded()) currNode->update();
+        if(currNode->isLoaded()) 
+        {    
+            currNode->update();
+        }
+        if(!currNode->isPlaying()) 
+        {    
+            currNode->play();
+        }
     }    
 
     //kinect.update();
@@ -89,6 +61,7 @@ void player::draw()
 
 void player::setup()
 {
+    this->currNode = NULL;
     //kinect.setup();
     
     // load project file
@@ -105,16 +78,19 @@ void player::setup()
 
             // read layer properties
             layerPtr l = this->createLayerForItem(mediaType, localURL);
-            l->setX(0);
-            l->setY(0);
-            l->setHeight(ofGetHeight());
-            l->setWidth(ofGetWidth());
-            l->setVolume(jsonProject["layers"][i]["volume"].asDouble());
-            l->setInTime(jsonProject["layers"][i]["in"].asDouble());
-            l->setOutTime(jsonProject["layers"][i]["out"].asDouble());
-            l->setOpacity(jsonProject["layers"][i]["opacity"].asDouble());
-            l->setAspectRatio(jsonProject["layers"][i]["aspectRatio"].asDouble());
             l->setId(jsonProject["layers"][i]["id"].asInt());
+            cout << "media type " << mediaType << endl;
+            cout << "id " << jsonProject["layers"][i]["id"].asInt() << endl;
+            l->setX(jsonProject["layers"][i]["attr"]["x"].asInt());
+            l->setY(jsonProject["layers"][i]["attr"]["y"].asInt());
+            l->setHeight(jsonProject["layers"][i]["attr"]["h"].asInt());
+            l->setWidth(jsonProject["layers"][i]["attr"]["w"].asInt());
+            l->setVolume(jsonProject["layers"][i]["attr"]["volume"].asDouble());
+            l->setInTime(jsonProject["layers"][i]["attr"]["in"].asDouble());
+            l->setOutTime(jsonProject["layers"][i]["attr"]["out"].asDouble());
+            //l->setOpacity(jsonProject["layers"][i]["attr"]["opacity"].asInt());
+            l->setAspectRatio(jsonProject["layers"][i]["attr"]["aspectRatio"].asDouble());
+            
             
             layers.insert(pair<int, layerPtr>(l->getId(), l));
         }
@@ -159,12 +135,7 @@ void player::setup()
         }
 	}
     
-    map<int,node>::iterator iter = nodes.find(11590);
-    /*currNode = &iter->second;
-    currNode->load();
-    currNode->play();
-     */
-    loadNode(11590);
+    loadNode(11214);
 }
 
 layerPtr player::createLayerForItem(string itemType, string localURI)
@@ -175,24 +146,17 @@ layerPtr player::createLayerForItem(string itemType, string localURI)
     if(itemType == "VIDEO")
     {
         videoLayer* v = new videoLayer;
-        v->setX(0);
-        v->setY(0);
-        v->setWidth(ofGetScreenWidth());
-        v->setHeight(ofGetScreenHeight());
         
         newLayer = layerPtr(v);
     }
     else if(itemType == "AUDIO")
     {
-        newLayer = layerPtr(new audioLayer);
+        audioLayer* a = new audioLayer;
+        newLayer = layerPtr(a);
     }
     else if(itemType == "IMAGE")
     {
         imageLayer* v = new imageLayer;
-        v->setX(0);
-        v->setY(0);
-        v->setWidth(ofGetScreenWidth());
-        v->setHeight(ofGetScreenHeight());
 
         newLayer = layerPtr(v);
     }
@@ -231,16 +195,11 @@ void player::keyPressed  (int key)
             break;    
     }
     
-    cout << "Switching to node " << id;
     map<int,node>::iterator iter = nodes.find(id);
     
     if(iter != nodes.end())
-    {   
-        currNode->stop();
-        currNode = &(iter->second);
-        cout << "Switching to node 2 " << currNode->getId();
-        currNode->load();
-        currNode->play();
+    {
+        loadNode(id);
     }
 }
 

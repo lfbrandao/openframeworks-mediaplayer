@@ -5,16 +5,26 @@ void audioLayer::setup(string audioURI)
 {    
 	ofBackground(0,0,0);
     this->objectURI = audioURI;
+    this->loaded = false;
 }
 
 void audioLayer::load()
 {
-    this->soundPlayer.loadSound(this->objectURI);
+    if(!loaded)
+    {
+        this->soundPlayer.loadSound(this->objectURI);
+        this->loaded = true;
+        this->playing = false;
+    }
 }
 
 void audioLayer::play()
 {
-    this->soundPlayer.play();    
+    if(!playing)
+    {
+        this->soundPlayer.play();
+        this->playing = true;
+    }
 }
 
 void audioLayer::pause()
@@ -25,6 +35,7 @@ void audioLayer::pause()
 void audioLayer::stop()
 {
     this->soundPlayer.stop();
+    this->playing = false;
 }
 
 

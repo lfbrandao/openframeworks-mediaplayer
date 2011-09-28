@@ -33,26 +33,9 @@ public:
     int getId(){return this->id;}
     int setId(int id){this->id = id;}
     
-    void unload(set<int> nodesToKeep, set<int> layersToKeep, set<int>& nodesDeleted, set<int>& layersDeleted)
-    {
-        
-    }
+    void unload(set<int> layersToKeep);
     
-    void unloadAdjacentNodes(set<int> nodesToKeep, set<int> layersToKeep, set<int>& nodesDeleted, set<int>& layersDeleted)
-    {}
-
-    set<int> getLayersId()
-    {
-        set<int> v;
-        
-        for(list<layerPtr>::iterator it = layers.begin(); it != layers.end(); ++it) 
-        {
-            v.insert((*it)->getId());
-        }
-        
-        return v;
-    }
-    
+    set<int> getLayersId();    
     bool isLoaded(){return loaded;}
     bool isPlaying(){return playing;}
     

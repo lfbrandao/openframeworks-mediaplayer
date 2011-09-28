@@ -21,10 +21,10 @@ class layer
         
         // setters & getters
         int getId(){return id;}
-        float getX(){return x;}
-        float getY(){return y;}
-        float getHeight(){return height;}
-        float getWidth(){return width;}
+        int getX(){return x;}
+        int getY(){return y;}
+        int getHeight(){return height;}
+        int getWidth(){return width;}
         float getVolume(){return volume;}
         float getInTime(){return inTime;}
         float getOutTime(){return outTime;}
@@ -32,10 +32,10 @@ class layer
         float getAspectRatio(){return aspectRatio;}
         
         void  setId(int id){this->id = id;}
-        void  setX(float x){this->x = x;}
-        void  setY(float y){this->y = y;}
-        void  setHeight(float height){this->height = height;}
-        void  setWidth(float width){this->width = width;}
+        void  setX(int x){this->x = ofGetWidth() * x / 100;}
+        void  setY(int y){this->y = ofGetHeight() * y / 100;;}
+        void  setHeight(int height){this->height = height;}
+        void  setWidth(int width){this->width = width;}
         void  setVolume(float volume){this->volume = volume;}    
         void  setInTime(float inTime){this->inTime = inTime;}    
         void  setOutTime(float outTime){this->outTime = outTime;}    
@@ -62,10 +62,10 @@ class layer
         int id;
         float originalWidth;
         float originalHeight;
-        float x;
-        float y;
-        float height;
-        float width;
+        int x;
+        int y;
+        int height;
+        int width;
         float volume;
         float inTime;
         float outTime;

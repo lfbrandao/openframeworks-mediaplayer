@@ -12,6 +12,7 @@ void node::load()
     {
         (*i)->load();
     }
+    this->playing = false;
     this->loaded = true;
 }
 
@@ -53,13 +54,13 @@ void node::draw()
 
 void node::play()
 {
-    playing = true;
     list<layerPtr>::iterator i;
     
     for (i = layers.begin(); i != layers.end(); ++i)
     {
         (*i)->play();
     }
+    playing = true;
 }
 
 void node::pause()
@@ -95,4 +96,33 @@ int node::getAdjacentNode(string direction)
 void node::addAdjacentNode(string direction, int nodeId)
 {
     adjacentNodes.insert(pair<string,int>(direction,nodeId));
+}
+
+set<int> node::getLayersId()
+{
+    set<int> v;
+    
+    cout << "layers on node " << this->id << ": ";
+    for(list<layerPtr>::iterator it = layers.begin(); it != layers.end(); ++it) 
+    {
+        v.insert((*it)->getId());
+        cout << (*it)->getId() << " ";
+    }
+    cout << endl;
+    
+    return v;
+}
+
+void node::unload(set<int> layersToKeep)
+{
+    list<layerPtr>::iterator i;
+    
+    for (i = layers.begin(); i != layers.end(); ++i)
+    {
+        if(layersToKeep.count((*i)->getId()) == 0)
+        {
+            (*i)->stop();
+        }
+    }
+
 }

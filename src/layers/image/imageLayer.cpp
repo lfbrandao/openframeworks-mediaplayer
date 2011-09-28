@@ -11,19 +11,32 @@ void imageLayer::setup(string imageURI)
 
 void imageLayer::load()
 {
-    cout << "loading " << objectURI << endl;
-    this->img.loadImage(this->objectURI);
-    this->loaded = true;
+    if(!loaded)
+    {
+        this->img.loadImage(this->objectURI);
+        if(this->width == 100)
+        {
+            this->width = width;
+            this->height = (ofGetWidth() * img.getHeight() / img.getWidth());
+            this->width = ofGetWidth();
+        }
+        else
+        {
+            this->width = this->img.width * this->width / 100;
+            this->height = this->img.height * this->height / 100;
+        }
+        
+        this->loaded = true;
+    }
 }
 
 void imageLayer::update()
 {
-    ofBackground(255);	
+    ofBackground(0);	
 }
 
 //--------------------------------------------------------------
 void imageLayer::draw()
 {
-    cout << "drawing image " << "x" << x << "y" << y << "width" << width << "height" << height << endl; 
     img.draw(this->x,this->y, this->width, this->height);
 }

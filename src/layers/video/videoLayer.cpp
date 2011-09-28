@@ -11,7 +11,23 @@ void videoLayer::setup(string videoURI)
 
 void videoLayer::load()
 {
-    this->videoPlayer.loadMovie(this->objectURI);
+    if(!loaded)
+    {
+        this->videoPlayer.loadMovie(this->objectURI);
+        if(this->width == 100)
+        {
+            this->width = width;
+            this->height = (ofGetWidth() * videoPlayer.getHeight() / videoPlayer.getWidth());
+            this->width = ofGetWidth();
+        }
+        else
+        {
+            this->width = this->videoPlayer.width * this->width / 100;
+            this->height = this->videoPlayer.height * this->height / 100;
+        }
+        
+        this->loaded = true;
+    }
 }
 
 void videoLayer::play()

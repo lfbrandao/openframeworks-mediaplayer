@@ -23,5 +23,6 @@ public:
     float getDuration();
 private:
     int duration;
+    bool playing;
 };
 
