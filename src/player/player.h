@@ -29,7 +29,8 @@ class player : public ofBaseApp
 		void update();
 		void draw();
         void loadNode(int newNodeId);
-    private:	
+    private:
+    void gestureListener(gesture & g);
         void keyPressed(int key);
         void keyReleased(int key);
         bool isItemInList(string itemId);

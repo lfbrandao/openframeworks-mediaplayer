@@ -17,11 +17,12 @@ public:
 	void keyPressed  (int key);
     
 	void	setupRecording(string _filename = "");
-	void	setupPlayback(string _filename);
 	string	generateFileName();
     
     void gestureListener(gesture & g);
     
+    bool                showFullBodyTracker;
+    bool                showHands;
     
 	bool				isTracking, isRecording, isCloud, isCPBkgnd, isMasking;
 	bool				isFiltering;

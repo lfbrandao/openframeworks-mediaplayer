@@ -57,11 +57,21 @@ void player::draw()
     if(currNode != NULL && currNode->isLoaded())    
         currNode->draw();
     kinect.draw();
+    
+}
+
+void player::gestureListener(gesture & g)
+{
+    if(g.gesture_name == "Click")
+    {
+        cout << g.gesture_position.x << "," << g.gesture_position.y << endl;
+    }
 }
 
 void player::setup()
 {
     kinect.setup();
+    ofAddListener(kinect.recordGestures.gestureRecognized, this, &player::gestureListener);
     
     this->currNode = NULL;
     
@@ -211,3 +221,4 @@ void player::keyPressed  (int key)
 void player::keyReleased(int key){
     
 }
+

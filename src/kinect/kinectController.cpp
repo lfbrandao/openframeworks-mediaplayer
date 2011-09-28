@@ -1,14 +1,17 @@
 #include "kinectController.h"
 
 //--------------------------------------------------------------
-void kinectController::setup() {
-    
-	isTracking		= false;
+void kinectController::setup() 
+{
+	isTracking		= true;
 	isFiltering		= false;
 	isRecording		= false;
 	isCloud			= false;
 	isCPBkgnd		= true;
 	isMasking		= true;
+
+    showFullBodyTracker = false;
+    showHands = false;
     
 	nearThreshold = 500;
 	farThreshold  = 1000;
@@ -22,12 +25,10 @@ void kinectController::setup() {
     myFont.loadFont("frabk.ttf", 32);
 }
 
-void kinectController::setupRecording(string _filename) {
-    
-#if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
+void kinectController::setupRecording(string _filename) 
+{
 	hardware.setup();				// libusb direct control of motor, LED and accelerometers
 	hardware.setLedOption(LED_OFF); // turn off the led just for yacks (or for live installation/performances ;-)
-#endif
     
 	recordContext.setup();	// all nodes created by code -> NOT using the xml config file at all
 	recordDepth.setup(&recordContext);
@@ -49,30 +50,17 @@ void kinectController::setupRecording(string _filename) {
     recordGestures.setup(&recordContext);
     recordGestures.addGesture("Wave");
     recordGestures.addGesture("Swipe");
-    //recordGestures.removeGesture("RaiseHand");
     recordGestures.addGesture("Click");
     
-    ofAddListener(recordGestures.gestureRecognized, this, &kinectController::gestureListener);
+    //ofAddListener(recordGestures.gestureRecognized, this, &kinectController::gestureListener);
 }
 
-void kinectController::gestureListener(gesture & g)
-{
-    if(g.gesture_name != "RaiseHand")
-    {
-        cout << "yo";
-    }
-}
-
-void kinectController::setupPlayback(string _filename) {
-    
-}
 
 //--------------------------------------------------------------
-void kinectController::update(){
-    
-#ifdef TARGET_OSX // only working on Mac at the moment
+void kinectController::update()
+{
 	hardware.update();
-#endif
+
     // update all nodes
     recordContext.update();
     recordDepth.update();
@@ -82,7 +70,7 @@ void kinectController::update(){
     if (isTracking) recordUser.update();
     
     // demo getting pixels from user gen
-    if (isTracking && isMasking) 
+    if (isTracking && showFullBodyTracker) 
     {
         user1Mask.setFromPixels(recordUser.getUserPixels(1), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
     }
@@ -92,49 +80,65 @@ void kinectController::update(){
 void kinectController::draw(){
     glPushMatrix();
 	
-    //recordDepth.draw(0,0,640,480);
-    //recordImage.draw(640, 0, 640, 480);
-    
     if (isTracking) 
     {
         //recordUser.draw();
-        if (isMasking) drawMasks();
+        if(showFullBodyTracker) drawMasks();
     }
-	glPopMatrix();
-    
-	//ofSetColor(255, 255, 0);
-    
+	
 	stringstream msg;
-    
-    int i = recordUser.getNumberOfTrackedUsers();
-    if(i > 0)
+    if(showFullBodyTracker)
     {
-        ofxTrackedUser * tracked = recordUser.getTrackedUser(i);
+        int i = recordUser.getNumberOfTrackedUsers();
+        if(i > 0)
+        {
+            ofxTrackedUser * tracked = recordUser.getTrackedUser(i);
         
-        if(tracked != NULL) 
-        {  
-            if(tracked->neck.found)
+            if(tracked != NULL) 
             {  
-                msg << "tracking neck " << (int)tracked->neck.position[1].X 
-                << "," << (int)tracked->neck.position[1].Y 
-                << "," << (int)tracked->neck.position[1].Z
-                << endl;
+                if(tracked->neck.found)
+                {  
+                    msg << "tracking neck " << (int)tracked->neck.position[1].X 
+                        << "," << (int)tracked->neck.position[1].Y 
+                        << "," << (int)tracked->neck.position[1].Z
+                    << endl;
                           
-                position = tracked->neck.position[1];
-                tracking = true;
+                    position = tracked->neck.position[1];
+                    tracking = true;
+                }
             }
+            else
+                tracking = false;
         }
         else
+        {
+            msg << "not tracking" << endl; 
             tracking = false;
-    }
-    else
-    {
-        msg << "not tracking" << endl; 
-        tracking = false;
+        }
+        ofSetColor(255, 255, 255);
+        myFont.drawString(msg.str(), 30, 50);
     }
     
-    ofSetColor(255, 255, 255);
-	myFont.drawString(msg.str(), 30, 50);
+    
+    if(showHands)
+    {
+        if(recordHandTracker.getNumTrackedHands() > 0)
+        {
+            for(int i = 0; i < recordHandTracker.getNumTrackedHands(); i++)
+            {    
+                ofxTrackedHand* tHand = recordHandTracker.getHand(i);
+                if(tHand != NULL)
+                {
+                    ofPoint pos = tHand->progPos;
+                    ofFill();
+                    
+                    ofCircle(pos.x * ofGetWidth(), pos.y * ofGetHeight(), 15);
+                }
+            }
+        }
+    }
+    glPopMatrix();
+    
 }
 
 void kinectController:: drawMasks() 
@@ -150,88 +154,24 @@ void kinectController::keyPressed(int key){
 	float smooth;
     
 	switch (key) {            
-#ifdef TARGET_OSX // only working on Mac at the moment
-		case 357: // up key
+		case 'w': // up key
 			hardware.setTiltAngle(hardware.tilt_angle++);
 			break;
-		case 359: // down key
+		case 's': // down key
 			hardware.setTiltAngle(hardware.tilt_angle--);
 			break;
-#endif
-            
 		case 't':
 		case 'T':
 			isTracking = !isTracking;
 			break;
-		case 'f':
-		case 'F':
-			isFiltering = !isFiltering;
+        case 'b':
+        case 'B':
+			showFullBodyTracker = !showFullBodyTracker;
 			break;
-		case 'm':
-		case 'M':
-			isMasking = !isMasking;
-			recordUser.setUseMaskPixels(isMasking);
-			break;
-		case 'c':
-		case 'C':
-			isCloud = !isCloud;
-			recordUser.setUseCloudPoints(isCloud);
-			break;
-		case 'b':
-		case 'B':
-			isCPBkgnd = !isCPBkgnd;
-			break;
-		case '9':
-		case '(':
-			smooth = recordUser.getSmoothing();
-			if (smooth - 0.1f > 0.0f) {
-				recordUser.setSmoothing(smooth - 0.1f);
-			}
-			break;
-		case '0':
-		case ')':
-			smooth = recordUser.getSmoothing();
-			if (smooth + 0.1f <= 1.0f) {
-				recordUser.setSmoothing(smooth + 0.1f);
-			}
-			break;
-		case '[':
-            //case '{':
-			if (filterFactor - 0.1f > 0.0f) {
-				filterFactor = filterFactor - 0.1f;
-			}
-			break;
-		case ']':
-            //case '}':
-			if (filterFactor + 0.1f <= 1.0f) {
-				filterFactor = filterFactor + 0.1f;
-			}
-			break;
-		case '>':
-		case '.':
-			farThreshold += 50;
-			if (farThreshold > recordDepth.getMaxDepth()) farThreshold = recordDepth.getMaxDepth();
-			break;
-		case '<':
-		case ',':
-			farThreshold -= 50;
-			if (farThreshold < 0) farThreshold = 0;
-			break;
-            
-		case '+':
-		case '=':
-			nearThreshold += 50;
-			if (nearThreshold > recordDepth.getMaxDepth()) nearThreshold = recordDepth.getMaxDepth();
-			break;
-            
-		case '-':
-		case '_':
-			nearThreshold -= 50;
-			if (nearThreshold < 0) nearThreshold = 0;
-			break;
-		case 'r':
-			recordContext.toggleRegisterViewport();
-			break;
+        case 'h':
+        case 'H':
+            showHands = !showHands;
+            break;
 		default:
 			break;
 	}
