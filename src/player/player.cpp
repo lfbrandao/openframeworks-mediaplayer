@@ -7,6 +7,7 @@ player::player(string projectFilePath)
 
 void player::loadNode(int newNodeId)
 {
+    cout << "loadNode " << currRoute << " " << newNodeId << endl;
     int prevNodeId = 0;
     
     // get the new node and the list of layers
@@ -25,6 +26,8 @@ void player::loadNode(int newNodeId)
     }
     
     currNode = &newNodeIt->second;
+    
+    routes[currRoute] = currNode;
 }
 
 void player::mocksetup()
@@ -62,9 +65,25 @@ void player::draw()
 
 void player::gestureListener(gesture & g)
 {
-    if(g.gesture_name == "Click")
+    int routeNumber;
+    if(g.gesture_name == "Click" || g.gesture_name == "Wave")
     {
-        cout << g.gesture_position.x << "," << g.gesture_position.y << endl;
+        
+        if(g.gesture_name == "Click" && currRoute == 1)
+        {
+            float xPos = g.gesture_position.x;
+            cout << xPos << endl;
+            if(xPos < -134) routeNumber = 2;
+            else if((xPos > -134) && (xPos < 202)) routeNumber = 3;
+            else routeNumber = 4;
+        }
+        else if(g.gesture_name == "Wave")
+        {
+            routeNumber = 1;
+        }
+        currRoute = routeNumber;
+        int id = routes.find(routeNumber)->second->getId();
+        loadNode(id);
     }
 }
 
@@ -78,7 +97,8 @@ void player::setup()
     
     // load project file
     bool success = jsonProject.openLocal(this->projectFilePath);
-	if (success)
+	int firstNodeToLoad;
+    if (success)
 	{
         // read and load layers and items from project
         for(int i = 0u; i != jsonProject["layers"].size(); ++i)
@@ -145,9 +165,26 @@ void player::setup()
             cout << "Inserting node " << nodeId << endl;
             nodes.insert(pair<int, node>(nodeId, n));
         }
+        
+        
+        
+        for(int i = 0u; i != jsonProject["routes"].size(); ++i)
+        {
+            int routeId = jsonProject["routes"][i]["id"].asInt();
+            int startNode = jsonProject["routes"][i]["start_id"].asInt();
+            
+            map<int,node>::iterator nodeIt = nodes.find(startNode);
+            routes.insert(pair<int,node*>(routeId, &nodeIt->second));    
+            
+            if(routeId == 1)
+            {
+                firstNodeToLoad = startNode;
+            }
+        }
+
 	}
-    
-    loadNode(11590);
+    currRoute = 1;
+    loadNode(firstNodeToLoad);
 }
 
 layerPtr player::createLayerForItem(string itemType, string localURI)
@@ -204,7 +241,23 @@ void player::keyPressed  (int key)
             break;
         case OF_KEY_DOWN:
             id = currNode->getAdjacentNode("DOWN");
-            break;    
+            break;
+        case '1':
+            id = routes.find(2)->second->getId();
+            currRoute = 2;
+            break;
+        case '2':
+            id = routes.find(3)->second->getId();
+            currRoute = 3;
+            break;   
+        case '3':
+            id = routes.find(4)->second->getId();
+            currRoute = 4;
+            break;
+        case '4':
+            id = routes.find(1)->second->getId();
+            currRoute = 1;
+            break;
     }
     
     map<int,node>::iterator iter = nodes.find(id);

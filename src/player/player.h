@@ -47,9 +47,12 @@ class player : public ofBaseApp
     
         kinectController kinect;
         
-    map<int,string> nodeStatus;
-    set<int> layersActive;
-    queue<int> loadingQueue; 
-    int currNodeId;
+        map<int,string> nodeStatus;
+        set<int> layersActive;
+        queue<int> loadingQueue; 
+        int currNodeId;
+    
+    map<int,node*> routes;
+    int currRoute;
 };
 
