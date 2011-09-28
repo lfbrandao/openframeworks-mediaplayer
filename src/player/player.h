@@ -14,7 +14,10 @@
 #include <tr1/memory>
 #include "kinectController.h"
 
+// #define USE_KINECT
+
 typedef tr1::shared_ptr<layer> layerPtr;
+
 
 class player : public ofBaseApp
 {
@@ -44,9 +47,9 @@ class player : public ofBaseApp
     
         layerPtr createLayerForItem(string itemType, string localURI);
         string projectFilePath;
-    
+#ifdef USE_KINECT    
         kinectController kinect;
-        
+#endif        
         map<int,string> nodeStatus;
         set<int> layersActive;
         queue<int> loadingQueue; 

@@ -49,8 +49,9 @@ void player::update()
             currNode->play();
         }
     }    
-
+#ifdef USE_KINECT    
     kinect.update();
+#endif
 }
 
 //--------------------------------------------------------------
@@ -59,7 +60,9 @@ void player::draw()
     ofBackground(0,0,0);
     if(currNode != NULL && currNode->isLoaded())    
         currNode->draw();
+#ifdef USE_KINECT    
     kinect.draw();
+#endif
     
 }
 
@@ -89,8 +92,10 @@ void player::gestureListener(gesture & g)
 
 void player::setup()
 {
+#ifdef USE_KINECT    
     kinect.setup();
     ofAddListener(kinect.recordGestures.gestureRecognized, this, &player::gestureListener);
+#endif
     
     this->currNode = NULL;
     
@@ -167,11 +172,13 @@ void player::setup()
         }
         
         
-        
+        int firstNodeToLoad;
         for(int i = 0u; i != jsonProject["routes"].size(); ++i)
         {
             int routeId = jsonProject["routes"][i]["id"].asInt();
             int startNode = jsonProject["routes"][i]["start_id"].asInt();
+            cout << routeId << endl;
+            cout << startNode << endl;
             
             map<int,node>::iterator nodeIt = nodes.find(startNode);
             routes.insert(pair<int,node*>(routeId, &nodeIt->second));    
@@ -183,8 +190,9 @@ void player::setup()
         }
 
 	}
+    cout << firstNodeToLoad << endl;
     currRoute = 1;
-    loadNode(firstNodeToLoad);
+    loadNode(10065);
 }
 
 layerPtr player::createLayerForItem(string itemType, string localURI)
@@ -213,7 +221,7 @@ layerPtr player::createLayerForItem(string itemType, string localURI)
     {
         cout << "something went wrong" << endl;
     }
-    
+    cout << "creating " << localURI << endl;
     //newLayer->load(&item);
     newLayer->setup(localURI);
     newLayer->setWidth(ofGetScreenWidth());
@@ -230,9 +238,11 @@ void player::keyPressed  (int key)
     
     switch(key)
     {
+        case OF_KEY_PAGE_DOWN:    
         case OF_KEY_LEFT:
             id = currNode->getAdjacentNode("LEFT");
             break;
+        case OF_KEY_PAGE_UP:    
         case OF_KEY_RIGHT:
             id = currNode->getAdjacentNode("RIGHT");
             break;
@@ -255,6 +265,7 @@ void player::keyPressed  (int key)
             currRoute = 4;
             break;
         case '4':
+        case '.':
             id = routes.find(1)->second->getId();
             currRoute = 1;
             break;
@@ -266,8 +277,9 @@ void player::keyPressed  (int key)
     {
         loadNode(id);
     }
-    
+#ifdef USE_KINECT        
     kinect.keyPressed(key);
+#endif
 }
 
 //--------------------------------------------------------------

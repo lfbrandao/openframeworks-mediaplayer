@@ -11,7 +11,7 @@ void kinectController::setup()
 	isMasking		= true;
 
     showFullBodyTracker = false;
-    showHands = false;
+    showHands = true;
     
 	nearThreshold = 500;
 	farThreshold  = 1000;
