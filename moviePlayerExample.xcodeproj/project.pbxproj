@@ -148,6 +148,8 @@
 		C1C2B33F141814B800769C3C /* videoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoLayer.h; sourceTree = "<group>"; };
 		C1C2B345141815E800769C3C /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		C1C2B346141815E800769C3C /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
+		C1C8388B143383F20011B0E4 /* Screen Shot 2011-09-28 at 12.33.35 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2011-09-28 at 12.33.35 PM.png"; sourceTree = "<group>"; };
+		C1C8388C143384FD0011B0E4 /* zeega.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = zeega.ico; sourceTree = "<group>"; };
 		C1CBB233142A79F3001FCD06 /* libusb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libusb.h; sourceTree = "<group>"; };
 		C1CBB235142A79F3001FCD06 /* XnCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XnCommon.h; sourceTree = "<group>"; };
 		C1CBB236142A79F3001FCD06 /* XnV3DVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XnV3DVector.h; sourceTree = "<group>"; };
@@ -848,6 +850,8 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				C1C8388C143384FD0011B0E4 /* zeega.ico */,
+				C1C8388B143383F20011B0E4 /* Screen Shot 2011-09-28 at 12.33.35 PM.png */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,

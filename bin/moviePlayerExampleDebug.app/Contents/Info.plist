@@ -8,6 +8,8 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>moviePlayerExampleDebug</string>
+	<key>CFBundleIconFile</key>
+	<string>zeega.ico</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.yourcompany.openFrameworks</string>
 	<key>CFBundleInfoDictionaryVersion</key>
