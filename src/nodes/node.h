@@ -18,6 +18,7 @@ public:
     
     void update();
     void draw();
+    void draw(float x, float y, float w, float h);
     void load();
     
     void play();

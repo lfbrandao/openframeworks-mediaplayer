@@ -23,7 +23,7 @@ public:
     // of methods
     virtual void update();
     virtual void draw();
-    
+    virtual void draw(float x, float y, float w, float h);
     float getDuration();
 private:
     int duration;

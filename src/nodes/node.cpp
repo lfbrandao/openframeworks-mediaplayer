@@ -52,6 +52,17 @@ void node::draw()
     }
 }
 
+void node::draw(float x, float y, float w, float h)
+{
+    list<layerPtr>::iterator i;
+    
+    for (i = layers.begin(); i != layers.end(); ++i)
+    {
+        (*i)->draw(x,y,w,h);
+    }
+}
+
+
 void node::play()
 {
     list<layerPtr>::iterator i;

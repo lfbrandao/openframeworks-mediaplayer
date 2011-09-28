@@ -13,6 +13,8 @@
 #include "ofxJSONElement.h"
 #include <tr1/memory>
 #include "kinectController.h"
+#include "imageRegion.h"
+#include "kinectZone.h"
 
 typedef tr1::shared_ptr<layer> layerPtr;
 
@@ -51,5 +53,22 @@ class player : public ofBaseApp
     set<int> layersActive;
     queue<int> loadingQueue; 
     int currNodeId;
+    
+    list<kinectZone> kinectZones;
+    list<imageRegion> regionsOfInterest;
+    list<imageRegion>::iterator it;
+    
+    imageRegion* currRegionOfInterest;
+    imageRegion* visibleRegionOfInterest;
+    
+    
+    float zoomStep;
+    float moveStep;
+    
+    float defaultZoomStep;
+    float defaultMoveStep;
+    void changeRegionOfInterest(imageRegion* newImageRegion);
+    
+    bool stopKinect;
 };
 

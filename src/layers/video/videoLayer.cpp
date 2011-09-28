@@ -66,6 +66,11 @@ void videoLayer::draw()
     videoPlayer.draw(this->x,this->y, this->width, this->height);
 }
 
+void videoLayer::draw(float x, float y, float w, float h)
+{
+    videoPlayer.draw(x,y,w,h);
+}
+
 float videoLayer::getDuration()
 {
     return videoPlayer.getDuration() * 1000;

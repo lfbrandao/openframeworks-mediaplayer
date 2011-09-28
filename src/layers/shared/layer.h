@@ -16,6 +16,7 @@ class layer
         // of methods
         virtual void update() = 0;
         virtual void draw() = 0;
+        virtual void draw(float x, float y, float w, float h) = 0;
         virtual void unload() = 0;
     
         virtual ~layer(){}

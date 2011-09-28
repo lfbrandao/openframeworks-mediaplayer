@@ -46,3 +46,8 @@ void imageLayer::draw()
 {
     img.draw(this->x,this->y, this->width, this->height);
 }
+
+void imageLayer::draw(float x, float y, float w, float h)
+{
+    img.draw(x,y,w,h);
+}
