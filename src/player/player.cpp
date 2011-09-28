@@ -47,7 +47,7 @@ void player::update()
         }
     }    
 
-    //kinect.update();
+    kinect.update();
 }
 
 //--------------------------------------------------------------
@@ -56,13 +56,15 @@ void player::draw()
     ofBackground(0,0,0);
     if(currNode != NULL && currNode->isLoaded())    
         currNode->draw();
-    //kinect.draw();
+    kinect.draw();
 }
 
 void player::setup()
 {
+    kinect.setup();
+    
     this->currNode = NULL;
-    //kinect.setup();
+    
     
     // load project file
     bool success = jsonProject.openLocal(this->projectFilePath);
@@ -201,6 +203,8 @@ void player::keyPressed  (int key)
     {
         loadNode(id);
     }
+    
+    kinect.keyPressed(key);
 }
 
 //--------------------------------------------------------------
