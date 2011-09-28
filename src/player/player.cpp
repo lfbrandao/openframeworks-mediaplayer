@@ -135,7 +135,7 @@ void player::setup()
         }
 	}
     
-    loadNode(11214);
+    loadNode(11590);
 }
 
 layerPtr player::createLayerForItem(string itemType, string localURI)

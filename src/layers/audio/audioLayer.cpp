@@ -18,6 +18,12 @@ void audioLayer::load()
     }
 }
 
+void audioLayer::unload()
+{
+    this->playing = false;
+    this->soundPlayer.stop();
+}
+
 void audioLayer::play()
 {
     if(!playing)

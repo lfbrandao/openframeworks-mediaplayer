@@ -11,6 +11,8 @@ public:
     void setup(string audioURI);
     
     virtual void load();
+    virtual void unload();
+    
     virtual void play();
     virtual void pause();
     virtual void stop();

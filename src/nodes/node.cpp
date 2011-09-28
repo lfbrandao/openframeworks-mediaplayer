@@ -121,7 +121,7 @@ void node::unload(set<int> layersToKeep)
     {
         if(layersToKeep.count((*i)->getId()) == 0)
         {
-            (*i)->stop();
+            (*i)->unload();
         }
     }
 

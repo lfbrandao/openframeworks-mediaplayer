@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "src/layers/audio/audioLayer.cpp"
-         timestampString = "338871976.640205"
+         timestampString = "338879996.719337"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "23"
-         endingLineNumber = "23"
+         startingLineNumber = "29"
+         endingLineNumber = "29"
          landmarkName = "audioLayer::play()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "src/layers/image/imageLayer.cpp"
-         timestampString = "338876606.745691"
+         timestampString = "338878803.924282"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "41"
-         endingLineNumber = "41"
+         startingLineNumber = "47"
+         endingLineNumber = "47"
          landmarkName = "imageLayer::draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "src/layers/shared/layer.h"
-         timestampString = "338873592.392052"
+         timestampString = "338877673.748345"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "38"
-         endingLineNumber = "38"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
          landmarkName = "class layer"
          landmarkType = "3">
       </FileBreakpoint>
@@ -85,6 +85,20 @@
          startingLineNumber = "84"
          endingLineNumber = "84"
          landmarkName = "player::setup()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "src/layers/image/imageLayer.cpp"
+         timestampString = "338878803.924282"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "18"
+         endingLineNumber = "18"
+         landmarkName = "imageLayer::load()"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

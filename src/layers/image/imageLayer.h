@@ -10,6 +10,7 @@ public:
     void setup(string imageURI);
     
     virtual void load();
+    virtual void unload();
     
     virtual void play() {};
     virtual void pause(){};

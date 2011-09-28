@@ -10,7 +10,8 @@ public:
     virtual void setup(string videoURI);
 
     virtual void load();
-
+    virtual void unload();
+    
     virtual void play();
     virtual void pause();
     virtual void stop();
