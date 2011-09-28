@@ -337,9 +337,9 @@ void player::setup()
     
     imageRegion* reg0 = new imageRegion(0,0,ofGetWidth(),ofGetHeight(),100);
     imageRegion* reg1 = new imageRegion(0,-400,200,100,400);
-    imageRegion* reg2 = new imageRegion(-400,-400,200,100,400);
-    imageRegion* reg3 = new imageRegion(-800,-400,200,100,400);
-    imageRegion* reg4 = new imageRegion(-1200,-400,200,100,400);
+    imageRegion* reg2 = new imageRegion(-1000,-400,200,100,400);
+    imageRegion* reg3 = new imageRegion(-2800,-400,200,100,400);
+    imageRegion* reg4 = new imageRegion(-3600,-400,200,100,400);
     
     regionsOfInterest.push_back(*reg0);
     regionsOfInterest.push_back(*reg1);
@@ -374,7 +374,7 @@ void player::setup()
     // init variables
     
     this->defaultZoomStep = 5.0;
-    this->defaultMoveStep = 5.0;
+    this->defaultMoveStep = 10.0;
     
     this->zoomStep = defaultZoomStep;
     this->moveStep = defaultMoveStep;
@@ -426,19 +426,25 @@ void player::keyPressed  (int key)
     
     switch(key)
     {
+        case OF_KEY_PAGE_UP:
+        case OF_KEY_UP:    
         case OF_KEY_LEFT:
             id = currNode->getAdjacentNode("LEFT");
             break;
+        case OF_KEY_PAGE_DOWN:
+        case OF_KEY_DOWN:            
         case OF_KEY_RIGHT:
             id = currNode->getAdjacentNode("RIGHT");
             break;
+        /*    
         case OF_KEY_UP:
             id = currNode->getAdjacentNode("UP");
             break;
-        case OF_KEY_DOWN:
+
             id = currNode->getAdjacentNode("DOWN");
             break;
-        case 'k':
+        */
+        case '.':
             stopKinect = !stopKinect;
             break;
     }
