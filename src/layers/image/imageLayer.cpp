@@ -15,16 +15,8 @@ void imageLayer::load()
     {
         this->img.loadImage(this->objectURI);
         
-        if(this->configWidth == 100)
-        {
-            this->height = (ofGetWidth() * img.getHeight() / img.getWidth());
-            this->width = ofGetWidth();
-        }
-        else
-        {
-            this->width = this->img.width * configWidth / 100;
-            this->height = this->img.height * configHeight / 100;
-        }
+        this->width = ofGetWidth() * configWidth / 100;
+        this->height = (ofGetHeight() * img.getWidth() / img.getHeight());
         
         this->loaded = true;
     }

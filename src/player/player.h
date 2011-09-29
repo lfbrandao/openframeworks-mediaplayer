@@ -44,9 +44,9 @@ class player : public ofBaseApp
     
         layerPtr createLayerForItem(string itemType, string localURI);
         string projectFilePath;
-    
+#ifdef USE_KINECT    
         kinectController kinect;
-        
+#endif        
     map<int,string> nodeStatus;
     set<int> layersActive;
     queue<int> loadingQueue; 

@@ -46,8 +46,9 @@ void player::update()
             currNode->play();
         }
     }    
-
+#ifdef USE_KINECT    
     kinect.update();
+#endif
 }
 
 //--------------------------------------------------------------
@@ -56,10 +57,11 @@ void player::draw()
     ofBackground(0,0,0);
     if(currNode != NULL && currNode->isLoaded())    
         currNode->draw();
+#ifdef USE_KINECT    
     kinect.draw();
-    
+#endif     
 }
-
+    
 void player::gestureListener(gesture & g)
 {
     if(g.gesture_name == "Click")
@@ -70,9 +72,10 @@ void player::gestureListener(gesture & g)
 
 void player::setup()
 {
+#ifdef USE_KINECT    
     kinect.setup();
     ofAddListener(kinect.recordGestures.gestureRecognized, this, &player::gestureListener);
-    
+#endif    
     this->currNode = NULL;
     
     
@@ -213,8 +216,9 @@ void player::keyPressed  (int key)
     {
         loadNode(id);
     }
-    
+#ifdef USE_KINECT    
     kinect.keyPressed(key);
+#endif
 }
 
 //--------------------------------------------------------------
