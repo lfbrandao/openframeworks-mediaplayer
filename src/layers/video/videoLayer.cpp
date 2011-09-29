@@ -14,18 +14,11 @@ void videoLayer::load()
     if(!loaded)
     {
         this->videoPlayer.loadMovie(this->objectURI);
-        if(this->configWidth == 100)
-        {
-            this->height = (ofGetWidth() * videoPlayer.getHeight() / videoPlayer.getWidth());
-            this->width = ofGetWidth();
-        }
-        else
-        {
-            this->width = this->videoPlayer.width * configWidth / 100;
-            this->height = this->videoPlayer.height * configHeight / 100;
-        }
         
-        this->videoPlayer.setPosition(this->inTime);
+        this->width = ofGetWidth() * configWidth / 100;
+        this->height = ofGetHeight() * configHeight / 100;
+    
+        //this->videoPlayer.setFrame((int)(inTime * videoPlayer.getTotalNumFrames() / videoPlayer.getDuration()));
         this->loaded = true;
     }
 }
@@ -38,8 +31,8 @@ void videoLayer::unload()
 
 void videoLayer::play()
 {
-    videoPlayer.setVolume(50);
-    this->videoPlayer.play();    
+    this->videoPlayer.play();
+    this->videoPlayer.setPosition(inTime / videoPlayer.getDuration());
 }
 
 void videoLayer::pause()

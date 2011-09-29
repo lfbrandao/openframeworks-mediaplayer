@@ -39,7 +39,7 @@ class layer
     void  setWidth(int width){this->width = width; configWidth = width;}
         void  setVolume(float volume){this->volume = volume;}    
         void  setInTime(float inTime){this->inTime = inTime;}    
-        void  setOutTime(float outTime){this->outTime = outTime;}    
+    void  setOutTime(float outTime){this->outTime = outTime; outTimeConfig = outTime;}    
         void  setOpacity(float opacity){this->opacity = opacity;}    
         void  setAspectRatio(float aspectRatio){this->aspectRatio = aspectRatio;}
         
@@ -67,7 +67,7 @@ class layer
         int width, configWidth;
         float volume;
         float inTime;
-        float outTime;
+        float outTime, outTimeConfig;
         float opacity;
         float aspectRatio;
     bool loaded;

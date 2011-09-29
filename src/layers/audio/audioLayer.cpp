@@ -29,6 +29,7 @@ void audioLayer::play()
     if(!playing)
     {
         this->soundPlayer.play();
+        //this->soundPlayer.setPosition(inTime / soundPlayer.length);
         this->playing = true;
     }
 }
