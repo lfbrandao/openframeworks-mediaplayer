@@ -15,16 +15,8 @@ void imageLayer::load()
     {
         this->img.loadImage(this->objectURI);
         
-        if(this->configWidth == 100)
-        {
-            this->height = (ofGetWidth() * img.getHeight() / img.getWidth());
-            this->width = ofGetWidth();
-        }
-        else
-        {
-            this->width = this->img.width * configWidth / 100;
-            this->height = this->img.height * configHeight / 100;
-        }
+        this->width = ofGetWidth() * configWidth / 100;
+        this->height = ofGetHeight() * configHeight / 100;
         
         this->loaded = true;
     }
@@ -44,5 +36,12 @@ void imageLayer::update()
 //--------------------------------------------------------------
 void imageLayer::draw()
 {
+    
+    if(this->opacity < 1)
+    {
+        ofEnableAlphaBlending();
+        ofSetColor(255,255,255,(int)(this->opacity * 255));
+    }
     img.draw(this->x,this->y, this->width, this->height);
+    ofDisableAlphaBlending();
 }

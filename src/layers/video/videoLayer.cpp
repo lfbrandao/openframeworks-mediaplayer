@@ -13,8 +13,6 @@ void videoLayer::load()
 {
     if(!loaded)
     {
-        ofVideoPlayer v;
-        this->videoPlayer = v;
         this->videoPlayer.loadMovie(this->objectURI);
         if(this->configWidth == 100)
         {
@@ -26,7 +24,8 @@ void videoLayer::load()
             this->width = this->videoPlayer.width * configWidth / 100;
             this->height = this->videoPlayer.height * configHeight / 100;
         }
-
+        
+        this->videoPlayer.setPosition(this->inTime);
         this->loaded = true;
     }
 }

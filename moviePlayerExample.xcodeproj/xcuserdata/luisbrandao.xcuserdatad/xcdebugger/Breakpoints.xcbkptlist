@@ -77,11 +77,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "src/player/player.cpp"
-         timestampString = "338944128.417133"
+         timestampString = "338956001.436981"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "257"
-         endingLineNumber = "257"
+         startingLineNumber = "256"
+         endingLineNumber = "256"
          landmarkName = "player::keyPressed (int key)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -161,11 +161,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "src/player/player.cpp"
-         timestampString = "338943949.970279"
+         timestampString = "338956001.436981"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "179"
-         endingLineNumber = "179"
+         startingLineNumber = "178"
+         endingLineNumber = "178"
          landmarkName = "player::setup()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -175,11 +175,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "src/player/player.cpp"
-         timestampString = "338944128.417133"
+         timestampString = "338956001.436981"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "183"
-         endingLineNumber = "183"
+         startingLineNumber = "182"
+         endingLineNumber = "182"
          landmarkName = "player::setup()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -189,11 +189,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "src/player/player.cpp"
-         timestampString = "338944128.417133"
+         timestampString = "338956001.436981"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "194"
-         endingLineNumber = "194"
+         startingLineNumber = "193"
+         endingLineNumber = "193"
          landmarkName = "player::setup()"
          landmarkType = "5">
          <Locations>
@@ -229,12 +229,26 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "src/player/player.cpp"
-         timestampString = "338944204.417536"
+         timestampString = "338956001.436981"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "188"
-         endingLineNumber = "188"
+         startingLineNumber = "187"
+         endingLineNumber = "187"
          landmarkName = "player::setup()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "src/layers/image/imageLayer.cpp"
+         timestampString = "338956995.377691"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "42"
+         endingLineNumber = "42"
+         landmarkName = "imageLayer::draw()"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

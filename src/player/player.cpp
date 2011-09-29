@@ -125,9 +125,8 @@ void player::setup()
             l->setVolume(jsonProject["layers"][i]["attr"]["volume"].asDouble());
             l->setInTime(jsonProject["layers"][i]["attr"]["in"].asDouble());
             l->setOutTime(jsonProject["layers"][i]["attr"]["out"].asDouble());
-            //l->setOpacity(jsonProject["layers"][i]["attr"]["opacity"].asInt());
+            l->setOpacity(jsonProject["layers"][i]["attr"]["opacity"].asDouble());
             l->setAspectRatio(jsonProject["layers"][i]["attr"]["aspectRatio"].asDouble());
-            
             
             layers.insert(pair<int, layerPtr>(l->getId(), l));
         }
@@ -192,7 +191,7 @@ void player::setup()
 	}
     cout << firstNodeToLoad << endl;
     currRoute = 1;
-    loadNode(10065);
+    loadNode(10075);
 }
 
 layerPtr player::createLayerForItem(string itemType, string localURI)
