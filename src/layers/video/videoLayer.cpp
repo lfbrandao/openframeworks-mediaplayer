@@ -7,12 +7,14 @@ void videoLayer::setup(string videoURI)
 	frameByframe = false;
     
     this->objectURI = videoURI;
+    this->playing = false;
 }
 
 void videoLayer::load()
 {
     if(!loaded)
     {
+        this->playing = false;
         this->videoPlayer.loadMovie(this->objectURI);
         
         this->width = ofGetWidth() * configWidth / 100;
@@ -27,12 +29,17 @@ void videoLayer::unload()
 {
     this->videoPlayer.stop();
     this->loaded = false;
+    this->playing = false;
 }
 
 void videoLayer::play()
 {
-    this->videoPlayer.play();
-    this->videoPlayer.setPosition(inTime / videoPlayer.getDuration());
+    if(!playing)
+    {
+        this->videoPlayer.play();
+        this->videoPlayer.setPosition(inTime / videoPlayer.getDuration());
+        this->playing = true;
+    }
 }
 
 void videoLayer::pause()
@@ -43,6 +50,7 @@ void videoLayer::pause()
 void videoLayer::stop()
 {
     this->videoPlayer.stop();
+    this->playing = false;
 }
 
 

@@ -22,7 +22,8 @@ void player::loadNode(int newNodeId)
 
         // unload all the layers from the previous node except the ones that
         // occur in the new node
-        currNode->unload(newNodeLayers);
+        if(currNode->getId() != routes.find(1)->second->getId())
+            currNode->unload(newNodeLayers);
     }
     
     currNode = &newNodeIt->second;

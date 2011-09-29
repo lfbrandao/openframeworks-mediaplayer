@@ -71,4 +71,5 @@ class layer
         float opacity;
         float aspectRatio;
     bool loaded;
+    bool playing;
 };

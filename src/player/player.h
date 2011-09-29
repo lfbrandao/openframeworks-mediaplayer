@@ -14,7 +14,7 @@
 #include <tr1/memory>
 #include "kinectController.h"
 
-// #define USE_KINECT
+#define USE_KINECT
 
 typedef tr1::shared_ptr<layer> layerPtr;
 

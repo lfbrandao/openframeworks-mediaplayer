@@ -34,8 +34,7 @@ void kinectController::setupRecording(string _filename)
 	recordDepth.setup(&recordContext);
 	recordImage.setup(&recordContext);
     
-    
-	recordUser.setup(&recordContext);
+    recordUser.setup(&recordContext);
 	recordUser.setSmoothing(filterFactor);				// built in openni skeleton smoothing...
 	recordUser.setUseMaskPixels(isMasking);
 	recordUser.setMaxNumberOfUsers(1);
